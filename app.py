@@ -59,14 +59,14 @@ muestras = [
         "color": "gris claro", "color_alteracion": "rosado claro",
         "minerales": {"cuarzo": 40, "feldespatos": 20, "fragmentos_roca": 25, "accesorios": 15}
     },
-    {
-        "nombre": "Grauvaca",
-        "tipo_particula": {"grava": 5, "arena": 70, "lodo": 25},
-        "componentes": {"armazon": 50, "matriz": 40, "cemento": 5, "porosidad": 5},
-        "forma": {"esfericidad": 0.5, "redondez": 0.5, "seleccion": "moderada", "madurez": "baja"},
-        "color": "gris verdoso", "color_alteracion": "marrón grisáceo",
-        "minerales": {"cuarzo": 45, "feldespatos": 30, "fragmentos_roca": 20, "accesorios": 5}
-    },
+    #{
+    #    "nombre": "Grauvaca",
+     #   "tipo_particula": {"grava": 5, "arena": 70, "lodo": 25},
+    #    "componentes": {"armazon": 50, "matriz": 40, "cemento": 5, "porosidad": 5},
+    #    "forma": {"esfericidad": 0.5, "redondez": 0.5, "seleccion": "moderada", "madurez": "baja"},
+    #    "color": "gris verdoso", "color_alteracion": "marrón grisáceo",
+    #    "minerales": {"cuarzo": 45, "feldespatos": 30, "fragmentos_roca": 20, "accesorios": 5}
+  #  },
 ]
 
 # Interfaz Streamlit
