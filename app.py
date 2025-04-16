@@ -1,58 +1,39 @@
-
 import streamlit as st
-import matplotlib.pyplot as plt
 
-# Función para calcular los porcentajes de los componentes
-def calcular_componentes():
-    st.title("Clasificador de Componentes Sedimentarios")
-    st.write("Ingresa las cantidades relativas (pueden ser conteos, proporciones, etc.)")
-    st.write("El programa calculará los porcentajes automáticamente.")
+# Datos simulados (como si vinieran de un Excel)
+muestras = [
+    {"nombre": "Muestra 1", "cuarzo": 92.5, "feldespato": 3.0, "fragmentos": 2.5, "accesorios": 2.0},
+    {"nombre": "Muestra 2", "cuarzo": 60.0, "feldespato": 30.0, "fragmentos": 5.0, "accesorios": 5.0},
+    {"nombre": "Muestra 3", "cuarzo": 55.0, "feldespato": 10.0, "fragmentos": 30.0, "accesorios": 5.0},
+    {"nombre": "Muestra 4", "cuarzo": 45.0, "feldespato": 25.0, "fragmentos": 25.0, "accesorios": 5.0},
+    {"nombre": "Muestra 5", "cuarzo": 85.0, "feldespato": 5.0, "fragmentos": 5.0, "accesorios": 5.0},
+    {"nombre": "Muestra 6", "cuarzo": 68.0, "feldespato": 12.0, "fragmentos": 15.0, "accesorios": 5.0},
+    {"nombre": "Muestra 7", "cuarzo": 40.0, "feldespato": 35.0, "fragmentos": 20.0, "accesorios": 5.0},
+    {"nombre": "Muestra 8", "cuarzo": 91.0, "feldespato": 4.0, "fragmentos": 3.0, "accesorios": 2.0},
+]
 
-    # Terrígenos / Siliciclásticos
-    cuarzo = st.number_input("Cuarzo: ", 0.0)
-    feldespato = st.number_input("Feldespato: ", 0.0)
-    fragmentos_roca = st.number_input("Fragmentos de roca: ", 0.0)
-
-    # Aloquímicos
-    conchas = st.number_input("Conchas: ", 0.0)
-    oolitos = st.number_input("Oolitos: ", 0.0)
-    pellets = st.number_input("Pellets: ", 0.0)
-    retrabajados = st.number_input("Fragmentos retrabajados: ", 0.0)
-
-    # Ortoquímicos
-    calcita = st.number_input("Calcita microcristalina: ", 0.0)
-    lodo = st.number_input("Lodo dolomítico: ", 0.0)
-    evaporitas = st.number_input("Minerales evaporíticos: ", 0.0)
-    chert = st.number_input("Chert / relleno de poros (calcita, cuarzo, óxidos Fe-Mn): ", 0.0)
-
-    # Suma total
-    total = (cuarzo + feldespato + fragmentos_roca +
-             conchas + oolitos + pellets + retrabajados +
-             calcita + lodo + evaporitas + chert)
-
-    if total == 0:
-        st.write("⚠️ No se ingresaron datos válidos.")
-        return
-
-    # Cálculo de porcentajes
-    terrigenos = (cuarzo + feldespato + fragmentos_roca) / total * 100
-    aloquimicos = (conchas + oolitos + pellets + retrabajados) / total * 100
-    ortoquimicos = (calcita + lodo + evaporitas + chert) / total * 100
-
-    # Resultados
-    st.write(f"Terrígenos / Siliciclásticos: {terrigenos:.2f}%")
-    st.write(f"Aloquímicos: {aloquimicos:.2f}%")
-    st.write(f"Ortoquímicos: {ortoquimicos:.2f}%")
-
-    # Clasificación simple
-    if terrigenos > aloquimicos and terrigenos > ortoquimicos:
-        st.write("→ Roca terrígena dominante (arenisca, lutita, conglomerado, etc.)")
-    elif aloquimicos > terrigenos and aloquimicos > ortoquimicos:
-        st.write("→ Roca carbonatada aloquímica (grainstone, packstone, etc.)")
-    elif ortoquimicos > terrigenos and ortoquimicos > aloquimicos:
-        st.write("→ Roca ortoquímica (micrita, dolomita, chert, evaporitas)")
+def clasificar_pettijohn(m):
+    if m["cuarzo"] > 90:
+        return "Arenita cuarzosa"
+    elif m["feldespato"] > 25:
+        return "Arenita arcósica"
+    elif m["fragmentos"] > 25:
+        return "Arenita lítica"
     else:
-        st.write("→ Composición mixta, no hay un grupo claramente dominante.")
+        return "Arenita mixta"
 
-if __name__ == "__main__":
-    calcular_componentes()
+st.title("Clasificación de Rocas Sedimentarias - Pettijohn")
+
+seleccion = st.selectbox("Selecciona una muestra:", [m["nombre"] for m in muestras])
+
+muestra = next(m for m in muestras if m["nombre"] == seleccion)
+
+st.subheader(f"Datos de {muestra['nombre']}")
+st.write(f"- Cuarzo: {muestra['cuarzo']}%")
+st.write(f"- Feldespato: {muestra['feldespato']}%")
+st.write(f"- Fragmentos de Roca: {muestra['fragmentos']}%")
+st.write(f"- Accesorios: {muestra['accesorios']}%")
+
+clasificacion = clasificar_pettijohn(muestra)
+
+st.success(f"📌 Clasificación según Pettijohn: **{clasificacion}**")
