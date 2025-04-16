@@ -80,6 +80,7 @@ muestras_filtradas = [m for m in muestras if m["nombre"] in seleccionadas]
 
 # Gráfico de distribución de tamaño de partículas
 if muestras_filtradas:
+    # Gráfico de distribución de tamaño de partículas
     fig, ax = plt.subplots(figsize=(10, 6))
     ancho = 0.2
     x = range(len(muestras_filtradas))
@@ -96,7 +97,7 @@ if muestras_filtradas:
     ax.text(0.5, -0.2, 'Fuente: Cutipa, C. Quenaya, F. Jaramillo, A. Amaro, M.', transform=ax.transAxes, ha='center', fontsize=8)
     st.pyplot(fig)
 
-# Gráfico de forma y madurez
+    # Gráfico de forma y madurez
     fig2, ax2 = plt.subplots(figsize=(10, 6))
     esfericidad = [m["forma"]["esfericidad"] for m in muestras_filtradas]
     redondez = [m["forma"]["redondez"] for m in muestras_filtradas]
@@ -111,7 +112,7 @@ if muestras_filtradas:
     ax2.text(0.5, -0.2, 'Fuente: Cutipa, C. Quenaya, F. Jaramillo, A. Amaro, M.', transform=ax2.transAxes, ha='center', fontsize=8)
     st.pyplot(fig2)
 
-# Gráfico de composición mineral
+    # Gráfico de composición mineral
     fig3, ax3 = plt.subplots(figsize=(10, 6))
     ancho = 0.2
     x = range(len(muestras_filtradas))
@@ -127,8 +128,7 @@ if muestras_filtradas:
     ax3.text(0.5, -0.2, 'Fuente: Cutipa, C. Quenaya, F. Jaramillo, A. Amaro, M.', transform=ax3.transAxes, ha='center', fontsize=8)
     st.pyplot(fig3)
 
-    
-# Gráfico de composición interna: armazón, matriz, cemento y porosidad
+    # Gráfico de composición interna: armazón, matriz, cemento y porosidad
     fig4, ax4 = plt.subplots(figsize=(10, 6))
     x = range(len(muestras_filtradas))
 
@@ -151,7 +151,6 @@ if muestras_filtradas:
     ax4.legend()
     ax4.text(0.5, -0.2, 'Fuente: Elaboración propia', transform=ax4.transAxes, ha='center', fontsize=8)
     st.pyplot(fig4)
-
 # Tabla resumen
     st.write("### Resumen de Composición Mineral")
     for m in muestras_filtradas:
