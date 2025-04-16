@@ -4,9 +4,25 @@ import matplotlib.pyplot as plt
 # Datos simulados de 8 muestras sedimentarias
 muestras = [
     {
-        "nombre": "Conglomerado",
+        "nombre": "Arenisca Cuarzosa",
+        "tipo_particula": {"grava": 5, "arena": 90, "lodo": 5},
+        "componentes": {"armazon": 80, "matriz": 10, "cemento": 5, "porosidad": 5},
+        "forma": {"esfericidad": 0.7, "redondez": 0.8, "seleccion": "buena", "madurez": "alta"},
+        "color": "blanco amarillento", "color_alteracion": "ocre claro",
+        "minerales": {"cuarzo": 75, "feldespatos": 5, "fragmentos_roca": 10, "accesorios": 10}
+    },
+    {
+        "nombre": "Arcosa",
+        "tipo_particula": {"grava": 5, "arena": 85, "lodo": 10},
+        "componentes": {"armazon": 65, "matriz": 20, "cemento": 10, "porosidad": 5},
+        "forma": {"esfericidad": 0.6, "redondez": 0.7, "seleccion": "moderada", "madurez": "media"},
+        "color": "rosado", "color_alteracion": "gris rojizo",
+        "minerales": {"cuarzo": 50, "feldespatos": 30, "fragmentos_roca": 15, "accesorios": 5}
+    },
+    {
+        "nombre": "Conglomerado Polimíctico",
         "tipo_particula": {"grava": 80, "arena": 15, "lodo": 5},
-        "componentes": {"armazon": 70, "matriz": 20, "porosidad": 10},
+        "componentes": {"armazon": 70, "matriz": 20, "cemento": 5, "porosidad": 5},
         "forma": {"esfericidad": 0.8, "redondez": 0.9, "seleccion": "pobre", "madurez": "baja"},
         "color": "gris claro", "color_alteracion": "marrón",
         "minerales": {"cuarzo": 40, "feldespatos": 10, "fragmentos_roca": 45, "accesorios": 5}
@@ -14,7 +30,7 @@ muestras = [
     {
         "nombre": "Brecha",
         "tipo_particula": {"grava": 75, "arena": 20, "lodo": 5},
-        "componentes": {"armazon": 65, "matriz": 25, "porosidad": 10},
+        "componentes": {"armazon": 65, "matriz": 25, "cemento": 5, "porosidad": 5},
         "forma": {"esfericidad": 0.6, "redondez": 0.4, "seleccion": "pobre", "madurez": "muy baja"},
         "color": "gris oscuro", "color_alteracion": "rojizo",
         "minerales": {"cuarzo": 35, "feldespatos": 15, "fragmentos_roca": 45, "accesorios": 5}
@@ -22,50 +38,34 @@ muestras = [
     {
         "nombre": "Lutita",
         "tipo_particula": {"grava": 0, "arena": 10, "lodo": 90},
-        "componentes": {"armazon": 20, "matriz": 70, "porosidad": 10},
+        "componentes": {"armazon": 20, "matriz": 70, "cemento": 5, "porosidad": 5},
         "forma": {"esfericidad": 0.3, "redondez": 0.2, "seleccion": "muy buena", "madurez": "alta"},
         "color": "negro", "color_alteracion": "gris verdoso",
         "minerales": {"cuarzo": 30, "feldespatos": 5, "fragmentos_roca": 10, "accesorios": 55}
     },
     {
-        "nombre": "Arenisca Fina",
+        "nombre": "Arenita",
         "tipo_particula": {"grava": 0, "arena": 85, "lodo": 15},
-        "componentes": {"armazon": 75, "matriz": 15, "porosidad": 10},
+        "componentes": {"armazon": 75, "matriz": 15, "cemento": 5, "porosidad": 5},
         "forma": {"esfericidad": 0.7, "redondez": 0.8, "seleccion": "buena", "madurez": "media"},
         "color": "beige", "color_alteracion": "amarillo pálido",
         "minerales": {"cuarzo": 60, "feldespatos": 20, "fragmentos_roca": 15, "accesorios": 5}
     },
     {
-        "nombre": "Arenisca Gruesa",
+        "nombre": "Arenisca Piroclástica",
         "tipo_particula": {"grava": 10, "arena": 80, "lodo": 10},
-        "componentes": {"armazon": 80, "matriz": 10, "porosidad": 10},
-        "forma": {"esfericidad": 0.6, "redondez": 0.7, "seleccion": "moderada", "madurez": "media"},
-        "color": "amarillo", "color_alteracion": "ocre",
-        "minerales": {"cuarzo": 55, "feldespatos": 25, "fragmentos_roca": 15, "accesorios": 5}
-    },
-    {
-        "nombre": "Arcillolita",
-        "tipo_particula": {"grava": 0, "arena": 5, "lodo": 95},
-        "componentes": {"armazon": 10, "matriz": 80, "porosidad": 10},
-        "forma": {"esfericidad": 0.2, "redondez": 0.1, "seleccion": "muy buena", "madurez": "alta"},
-        "color": "gris azul", "color_alteracion": "verde grisáceo",
-        "minerales": {"cuarzo": 25, "feldespatos": 10, "fragmentos_roca": 15, "accesorios": 50}
+        "componentes": {"armazon": 60, "matriz": 25, "cemento": 10, "porosidad": 5},
+        "forma": {"esfericidad": 0.6, "redondez": 0.7, "seleccion": "moderada", "madurez": "baja"},
+        "color": "gris claro", "color_alteracion": "rosado claro",
+        "minerales": {"cuarzo": 40, "feldespatos": 20, "fragmentos_roca": 25, "accesorios": 15}
     },
     {
         "nombre": "Grauvaca",
         "tipo_particula": {"grava": 5, "arena": 70, "lodo": 25},
-        "componentes": {"armazon": 50, "matriz": 40, "porosidad": 10},
+        "componentes": {"armazon": 50, "matriz": 40, "cemento": 5, "porosidad": 5},
         "forma": {"esfericidad": 0.5, "redondez": 0.5, "seleccion": "moderada", "madurez": "baja"},
         "color": "gris verdoso", "color_alteracion": "marrón grisáceo",
         "minerales": {"cuarzo": 45, "feldespatos": 30, "fragmentos_roca": 20, "accesorios": 5}
-    },
-    {
-        "nombre": "Marga",
-        "tipo_particula": {"grava": 0, "arena": 25, "lodo": 75},
-        "componentes": {"armazon": 30, "matriz": 60, "porosidad": 10},
-        "forma": {"esfericidad": 0.4, "redondez": 0.3, "seleccion": "pobre", "madurez": "media"},
-        "color": "crema", "color_alteracion": "gris amarillento",
-        "minerales": {"cuarzo": 35, "feldespatos": 15, "fragmentos_roca": 20, "accesorios": 30}
     },
 ]
 
