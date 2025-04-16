@@ -78,7 +78,7 @@ seleccionadas = st.multiselect("Selecciona muestras para comparar:", muestras_no
 # Filtro de datos
 muestras_filtradas = [m for m in muestras if m["nombre"] in seleccionadas]
 
-# Visualización con matplotlib
+# Gráfico de distribución de tamaño de partículas
 if muestras_filtradas:
     fig, ax = plt.subplots(figsize=(10, 6))
     ancho = 0.2
@@ -93,10 +93,44 @@ if muestras_filtradas:
     ax.set_ylabel("Porcentaje (%)")
     ax.set_title("Distribución de Tamaño de Partículas")
     ax.legend()
+    ax.text(0.5, -0.2, 'Fuente: Elaboración propia', transform=ax.transAxes, ha='center', fontsize=8)
     st.pyplot(fig)
 
+# Gráfico de forma y madurez
+    fig2, ax2 = plt.subplots(figsize=(10, 6))
+    esfericidad = [m["forma"]["esfericidad"] for m in muestras_filtradas]
+    redondez = [m["forma"]["redondez"] for m in muestras_filtradas]
+    nombres = [m["nombre"] for m in muestras_filtradas]
+
+    ax2.scatter(esfericidad, redondez, c='green', s=100)
+    for i, nombre in enumerate(nombres):
+        ax2.text(esfericidad[i] + 0.01, redondez[i], nombre, fontsize=8)
+    ax2.set_xlabel("Esfericidad")
+    ax2.set_ylabel("Redondez")
+    ax2.set_title("Esfericidad vs Redondez")
+    ax2.text(0.5, -0.2, 'Fuente: Elaboración propia', transform=ax2.transAxes, ha='center', fontsize=8)
+    st.pyplot(fig2)
+
+# Gráfico de composición mineral
+    fig3, ax3 = plt.subplots(figsize=(10, 6))
+    ancho = 0.2
+    x = range(len(muestras_filtradas))
+    for i, comp in enumerate(["cuarzo", "feldespatos", "fragmentos_roca", "accesorios"]):
+        valores = [m["minerales"][comp] for m in muestras_filtradas]
+        ax3.bar([v + ancho*i for v in x], valores, width=ancho, label=comp)
+
+    ax3.set_xticks([v + ancho*1.5 for v in x])
+    ax3.set_xticklabels([m["nombre"] for m in muestras_filtradas], rotation=45)
+    ax3.set_ylabel("Porcentaje (%)")
+    ax3.set_title("Composición Mineral de las Muestras")
+    ax3.legend()
+    ax3.text(0.5, -0.2, 'Fuente: Elaboración propia', transform=ax3.transAxes, ha='center', fontsize=8)
+    st.pyplot(fig3)
+
+# Tabla resumen
     st.write("### Resumen de Composición Mineral")
     for m in muestras_filtradas:
         st.write(f"**{m['nombre']}**")
         st.write(m["minerales"])
+
 
