@@ -127,6 +127,31 @@ if muestras_filtradas:
     ax3.text(0.5, -0.2, 'Fuente: Cutipa, C. Quenaya, F. Jaramillo, A. Amaro, M.', transform=ax3.transAxes, ha='center', fontsize=8)
     st.pyplot(fig3)
 
+    
+# Gráfico de composición interna: armazón, matriz, cemento y porosidad
+    fig4, ax4 = plt.subplots(figsize=(10, 6))
+    x = range(len(muestras_filtradas))
+
+    armazon = [m["componentes"]["armazon"] for m in muestras_filtradas]
+    matriz = [m["componentes"]["matriz"] for m in muestras_filtradas]
+    cemento = [m["componentes"]["cemento"] for m in muestras_filtradas]
+    porosidad = [m["componentes"]["porosidad"] for m in muestras_filtradas]
+
+    ax4.bar(x, armazon, label="Armazón")
+    ax4.bar(x, matriz, bottom=armazon, label="Matriz")
+    bottom_cem = [a + b for a, b in zip(armazon, matriz)]
+    ax4.bar(x, cemento, bottom=bottom_cem, label="Cemento")
+    bottom_por = [a + b + c for a, b, c in zip(armazon, matriz, cemento)]
+    ax4.bar(x, porosidad, bottom=bottom_por, label="Porosidad")
+
+    ax4.set_xticks(x)
+    ax4.set_xticklabels([m["nombre"] for m in muestras_filtradas], rotation=45)
+    ax4.set_ylabel("Porcentaje (%)")
+    ax4.set_title("Composición Interna de las Muestras")
+    ax4.legend()
+    ax4.text(0.5, -0.2, 'Fuente: Elaboración propia', transform=ax4.transAxes, ha='center', fontsize=8)
+    st.pyplot(fig4)
+
 # Tabla resumen
     st.write("### Resumen de Composición Mineral")
     for m in muestras_filtradas:
