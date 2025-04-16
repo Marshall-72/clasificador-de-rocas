@@ -59,14 +59,14 @@ muestras = [
         "color": "gris claro", "color_alteracion": "rosado claro",
         "minerales": {"cuarzo": 40, "feldespatos": 20, "fragmentos_roca": 25, "accesorios": 15}
     },
-    #{
-    #    "nombre": "Grauvaca",
-     #   "tipo_particula": {"grava": 5, "arena": 70, "lodo": 25},
-    #    "componentes": {"armazon": 50, "matriz": 40, "cemento": 5, "porosidad": 5},
-    #    "forma": {"esfericidad": 0.5, "redondez": 0.5, "seleccion": "moderada", "madurez": "baja"},
-    #    "color": "gris verdoso", "color_alteracion": "marrón grisáceo",
-    #    "minerales": {"cuarzo": 45, "feldespatos": 30, "fragmentos_roca": 20, "accesorios": 5}
-  #  },
+    {
+        "nombre": "Arenisca de grano grueso",
+        "tipo_particula": {"grava": 10, "arena": 85, "lodo": 5},
+        "componentes": {"armazon": 70, "matriz": 15, "cemento": 10, "porosidad": 5},
+        "forma": {"esfericidad": 0.75, "redondez": 0.65, "seleccion": "moderada", "madurez": "media"},
+        "color": "amarillo claro", "color_alteracion": "ocre amarillento",
+        "minerales": {"cuarzo": 65, "feldespatos": 15, "fragmentos_roca": 15, "accesorios": 5}
+    }
 ]
 
 # Interfaz Streamlit
@@ -93,7 +93,7 @@ if muestras_filtradas:
     ax.set_ylabel("Porcentaje (%)")
     ax.set_title("Distribución de Tamaño de Partículas")
     ax.legend()
-    ax.text(0.5, -0.2, 'Fuente: Elaboración propia', transform=ax.transAxes, ha='center', fontsize=8)
+    ax.text(0.5, -0.2, 'Fuente: Cutipa, C. Quenaya, F. Jaramillo, A. Amaro, M.', transform=ax.transAxes, ha='center', fontsize=8)
     st.pyplot(fig)
 
 # Gráfico de forma y madurez
@@ -108,7 +108,7 @@ if muestras_filtradas:
     ax2.set_xlabel("Esfericidad")
     ax2.set_ylabel("Redondez")
     ax2.set_title("Esfericidad vs Redondez")
-    ax2.text(0.5, -0.2, 'Fuente: Elaboración propia', transform=ax2.transAxes, ha='center', fontsize=8)
+    ax2.text(0.5, -0.2, 'Fuente: Cutipa, C. Quenaya, F. Jaramillo, A. Amaro, M.', transform=ax2.transAxes, ha='center', fontsize=8)
     st.pyplot(fig2)
 
 # Gráfico de composición mineral
@@ -124,7 +124,7 @@ if muestras_filtradas:
     ax3.set_ylabel("Porcentaje (%)")
     ax3.set_title("Composición Mineral de las Muestras")
     ax3.legend()
-    ax3.text(0.5, -0.2, 'Fuente: Elaboración propia', transform=ax3.transAxes, ha='center', fontsize=8)
+    ax3.text(0.5, -0.2, 'Fuente: Cutipa, C. Quenaya, F. Jaramillo, A. Amaro, M.', transform=ax3.transAxes, ha='center', fontsize=8)
     st.pyplot(fig3)
 
 # Tabla resumen
