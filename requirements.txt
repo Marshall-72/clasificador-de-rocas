@@ -1,3 +1,4 @@
 
 streamlit
 matplotlib
+pip install streamlit transformers requests
