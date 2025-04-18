@@ -160,7 +160,7 @@ if muestras_filtradas:
 
 # Configura tu API token de Hugging Face
 API_URL = "https://api-inference.huggingface.co/models/google/flan-t5-base"
-headers = {"Authorization": f"Bearer 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"}
+headers = {"Authorization": f"Bearer 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"}
 
 # Función para enviar la consulta al modelo
 def query(payload):
