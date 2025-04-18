@@ -1,5 +1,6 @@
 import streamlit as st
 import matplotlib.pyplot as plt
+import requests
 
 # Datos simulados de 8 muestras sedimentarias
 muestras = [
@@ -157,8 +158,6 @@ if muestras_filtradas:
         st.write(f"**{m['nombre']}**")
         st.write(m["minerales"])
 
-import streamlit as st
-import requests
 
 API_URL = "https://api-inference.huggingface.co/models/google/flan-t5-base"
 headers = {"Authorization": f"Bearer {st.secrets['huggingface']['api_key']}"}
