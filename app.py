@@ -158,9 +158,9 @@ if muestras_filtradas:
         st.write(f"**{m['nombre']}**")
         st.write(m["minerales"])
 
-
+# Configura tu API token de Hugging Face
 API_URL = "https://api-inference.huggingface.co/models/google/flan-t5-base"
-headers = {"Authorization": f"Bearer {st.secrets['huggingface']['api_key']}"}
+headers = {"Authorization": f"Bearer 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"}
 
 # Función para enviar la consulta al modelo
 def query(payload):
