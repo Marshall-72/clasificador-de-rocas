@@ -1,6 +1,5 @@
 import streamlit as st
 import matplotlib.pyplot as plt
-import requests
 
 # Datos simulados de 8 muestras sedimentarias
 muestras = [
@@ -157,33 +156,6 @@ if muestras_filtradas:
     for m in muestras_filtradas:
         st.write(f"**{m['nombre']}**")
         st.write(m["minerales"])
-
-# Configura tu API token de Hugging Face
-API_URL = "https://api-inference.huggingface.co/models/google/flan-t5-base"
-headers = {"Authorization": f"Bearer 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"}
-
-# Función para enviar la consulta al modelo
-def query(payload):
-    response = requests.post(API_URL, headers=headers, json=payload)
-    return response.json()
-
-# Título de la app
-st.title("💬 Pregúntale a la IA (vía Hugging Face)")
-
-# Entrada del usuario
-user_input = st.text_input("Escribe tu pregunta:")
-
-if st.button("Enviar"):
-    if user_input.strip() == "":
-        st.warning("Por favor escribe una pregunta.")
-    else:
-        with st.spinner("Pensando..."):
-            output = query({"inputs": user_input})
-            if "error" in output:
-                st.error(f"Error del modelo: {output['error']}")
-            else:
-                st.success("Respuesta de la IA:")
-                st.write(output[0]["generated_text"])
 
 
 
