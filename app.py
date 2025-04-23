@@ -158,43 +158,87 @@ if muestras_filtradas:
         st.write(f"**{m['nombre']}**")
         st.write(m["minerales"])
 
-# Sección de preguntas frecuentes (FAQ) - Interpretativas
 
-st.write("### Preguntas Interpretativas")
+# Lista de preguntas y respuestas predefinidas, junto con palabras clave
+preguntas_respuestas = {
+    "Defina con sus palabras qué relación existe entre el tipo de contacto de las partículas y la matriz.": 
+        {"respuesta": "El contacto entre las partículas de una roca sedimentaria puede ser puntual, lineal o superficial, y la matriz es el material que llena los espacios entre las partículas. A mayor contacto, menor es la cantidad de matriz, lo que influye en la porosidad y otras características.",
+         "palabras_clave": ["contacto", "partículas", "matriz"]},
+    
+    "Si una roca sedimentaria siliciclástica es madura texturalmente, ¿qué se puede decir del contenido de matriz, el sortamiento y la redondez?": 
+        {"respuesta": "Una roca madura texturalmente tiene poco contenido de matriz, ya que las partículas están bien seleccionadas y son redondeadas. El sortamiento es muy bueno, lo que significa que las partículas son de tamaño uniforme.",
+         "palabras_clave": ["madura", "texturalmente", "matriz", "sortamiento", "redondez"]},
+    
+    "Una roca sedimentaria siliciclástica al ser observada en muestra de mano presenta un mal calibrado, ¿qué se puede interpretar de esto?": 
+        {"respuesta": "El mal calibrado indica que las partículas no están bien ordenadas en tamaños, lo que puede sugerir que la roca es inmadura texturalmente o que ha sido depositada en condiciones dinámicas no estables.",
+         "palabras_clave": ["muestra de mano", "calibrado", "partículas", "inmadura"]},
+    
+    "¿Cuál es la diferencia que existe entre matriz y cemento? ¿Cómo se pueden distinguir macroscópicamente?": 
+        {"respuesta": "La matriz es el material fino que ocupa los espacios entre las partículas, mientras que el cemento es una sustancia mineral que une las partículas. Macroscópicamente, el cemento tiene una textura más sólida y cristalina, mientras que la matriz suele ser más fina y menos compacta.",
+         "palabras_clave": ["matriz", "cemento", "macroscópicamente", "partículas"]},
+    
+    "¿Por qué es importante definir el porcentaje de matriz en la roca en términos de clasificación?": 
+        {"respuesta": "El porcentaje de matriz es crucial porque ayuda a clasificar las rocas en términos de madurez y porosidad. Una mayor cantidad de matriz generalmente indica una roca inmadura y de baja porosidad.",
+         "palabras_clave": ["porcentaje", "matriz", "clasificación", "madurez", "porosidad"]},
+    
+    "Cuando una roca es un conglomerado, ¿qué clasificaciones hay?": 
+        {"respuesta": "Un conglomerado se clasifica en función de la cantidad de matriz y el tamaño de los clastos. Dependiendo del porcentaje de matriz, se puede clasificar como un conglomerado rudítico o como un brecho.",
+         "palabras_clave": ["conglomerado", "clasificación", "matriz", "clastos"]},
+    
+    "¿En qué consiste la madurez composicional de una roca?": 
+        {"respuesta": "La madurez composicional hace referencia al grado de alteración de los minerales originales en una roca. En rocas maduras, los minerales más susceptibles a la alteración han sido transformados o removidos, dejando una composición más estable.",
+         "palabras_clave": ["madurez", "composicional", "alteración", "minerales"]},
+    
+    "¿Qué diferencia existe entre porosidad y permeabilidad?": 
+        {"respuesta": "La porosidad es la cantidad de espacio vacío dentro de la roca, mientras que la permeabilidad es la capacidad de la roca para permitir el paso de fluidos. Una roca puede tener alta porosidad pero baja permeabilidad si los poros no están conectados.",
+         "palabras_clave": ["porosidad", "permeabilidad", "espacio vacío", "fluidos"]},
+    
+    "¿Una roca puede presentar tanto porosidades de tipo primarias y secundarias? Explique brevemente.": 
+        {"respuesta": "Sí, una roca puede presentar porosidad primaria (formada durante la sedimentación) y porosidad secundaria (formada por procesos posteriores como fracturamiento o meteorización). Ambas porosidades pueden coexistir y afectar las propiedades de la roca.",
+         "palabras_clave": ["porosidad", "primaria", "secundaria", "fracturamiento", "meteorización"]}
+}
 
-faq_interpretativas = [
-    ("Defina con sus palabras qué relación existe entre el tipo de contacto de las partículas y la matriz.", 
-     "El tipo de contacto entre las partículas puede influir en la cantidad y distribución de la matriz, ya que los contactos más cercanos pueden implicar una mayor cementación o mayor desarrollo de la matriz entre los granos."),
+# Función para obtener la respuesta más adecuada
+def obtener_respuesta(pregunta_usuario):
+    respuesta = "Lo siento, no pude encontrar una respuesta adecuada."
     
-    ("Si una roca sedimentaria siliciclástica es madura texturalmente, ¿qué se puede decir del contenido de matriz, el sortamiento y la redondez?", 
-     "Una roca madura texturalmente generalmente tiene baja matriz, un buen sortamiento de partículas y granos bien redondeados debido a un largo proceso de transporte."),
+    # Convertir la pregunta del usuario en una lista de palabras clave
+    palabras_usuario = pregunta_usuario.lower().split()
     
-    ("Una roca sedimentaria siliciclástica al ser observada en muestra de mano presenta un mal calibrado, ¿qué se puede interpretar de esto?", 
-     "Un mal calibrado puede indicar un mal sortamiento de partículas, lo que sugiere un transporte más corto o un ambiente de sedimentación turbulento."),
+    # Buscar las palabras clave en las preguntas predefinidas
+    for pregunta, info in preguntas_respuestas.items():
+        palabras_clave = info["palabras_clave"]
+        
+        # Contar cuántas palabras clave coinciden
+        coincidencias = sum(1 for palabra in palabras_usuario if palabra in palabras_clave)
+        
+        # Si encontramos coincidencias, devolver la respuesta asociada
+        if coincidencias >= 2:  # Este umbral se puede ajustar
+            respuesta = info["respuesta"]
+            break
     
-    ("¿Cuál es la diferencia que existe entre matriz y cemento? ¿Cómo se pueden distinguir macroscópicamente?", 
-     "La matriz es material fino que llena los espacios entre los granos, mientras que el cemento es una sustancia que une los granos. Macroscópicamente, el cemento suele ser más rígido y actúa como aglutinante."),
-    
-    ("¿Por qué es importante definir el porcentaje de matriz en la roca en términos de clasificación?", 
-     "El porcentaje de matriz es crucial para clasificar las rocas sedimentarias porque influye en su porosidad, densidad y otras propiedades que definen su comportamiento y uso."),
-    
-    ("Cuando una roca es un conglomerado, ¿qué clasificaciones hay?", 
-     "Un conglomerado se clasifica según el tamaño de sus partículas, que pueden ser gruesas, medianas o finas, y por la composición mineralógica de los fragmentos."),
-    
-    ("¿En qué consiste la madurez composicional de una roca?", 
-     "La madurez composicional hace referencia al grado de transformación de los minerales en una roca, reflejando el tiempo y las condiciones de transporte y cementación."),
-    
-    ("¿Qué diferencia existe entre porosidad y permeabilidad?", 
-     "La porosidad es la cantidad de espacio vacío en una roca, mientras que la permeabilidad es la capacidad de una roca para permitir el paso de fluidos."),
-    
-    ("¿Una roca puede presentar tanto porosidades de tipo primarias y secundarias? Explique brevemente.", 
-     "Sí, una roca puede presentar porosidades primarias, que se originan durante la formación de la roca, y porosidades secundarias, que se desarrollan posteriormente por procesos como fracturación o disolución.")
-]
+    return respuesta
 
-# Mostrar preguntas y respuestas
-for pregunta, respuesta in faq_interpretativas:
-    with st.expander(pregunta):
-        st.write(respuesta)
+# Menú desplegable de preguntas
+st.title("Preguntas Interpretativas sobre Rocas Sedimentarias")
+
+# Opción 1: Menú desplegable
+st.subheader("Selecciona una pregunta")
+pregunta_seleccionada = st.selectbox("Elige una pregunta:", list(preguntas_respuestas.keys()))
+
+if pregunta_seleccionada:
+    st.write("**Respuesta:**")
+    st.write(preguntas_respuestas[pregunta_seleccionada]["respuesta"])
+
+# Opción 2: Búsqueda de pregunta por similitud
+st.subheader("Escribe tu propia pregunta para obtener una respuesta similar")
+
+pregunta_usuario = st.text_input("Escribe tu pregunta aquí:")
+
+if pregunta_usuario:
+    respuesta_similar = obtener_respuesta(pregunta_usuario)
+    st.write("**Respuesta similar:**")
+    st.write(respuesta_similar)
 
 
 
