@@ -159,46 +159,83 @@ if muestras_filtradas:
         st.write(m["minerales"])
 
 
-# Lista de preguntas y respuestas predefinidas, junto con palabras clave
+
+# Lista de preguntas y respuestas predefinidas, con varias respuestas posibles
 preguntas_respuestas = {
     "Defina con sus palabras qué relación existe entre el tipo de contacto de las partículas y la matriz.": 
-        {"respuesta": "El contacto entre las partículas de una roca sedimentaria puede ser puntual, lineal o superficial, y la matriz es el material que llena los espacios entre las partículas. A mayor contacto, menor es la cantidad de matriz, lo que influye en la porosidad y otras características.",
-         "palabras_clave": ["contacto", "partículas", "matriz"]},
+        {"respuestas": [
+            "El contacto entre las partículas de una roca sedimentaria puede ser puntual, lineal o superficial, y la matriz es el material que llena los espacios entre las partículas. A mayor contacto, menor es la cantidad de matriz, lo que influye en la porosidad y otras características.",
+            "El tipo de contacto entre las partículas influye directamente en la cantidad de matriz. Cuando las partículas están más unidas, la matriz tiende a ser menor, lo que puede mejorar las propiedades de la roca.",
+            "La relación entre el contacto de las partículas y la matriz es importante porque afecta la porosidad. A medida que las partículas están más cerca unas de otras, el espacio entre ellas es ocupado por la matriz, lo que puede disminuir la porosidad."
+        ],
+        "palabras_clave": ["contacto", "partículas", "matriz"]},
     
     "Si una roca sedimentaria siliciclástica es madura texturalmente, ¿qué se puede decir del contenido de matriz, el sortamiento y la redondez?": 
-        {"respuesta": "Una roca madura texturalmente tiene poco contenido de matriz, ya que las partículas están bien seleccionadas y son redondeadas. El sortamiento es muy bueno, lo que significa que las partículas son de tamaño uniforme.",
-         "palabras_clave": ["madura", "texturalmente", "matriz", "sortamiento", "redondez"]},
+        {"respuestas": [
+            "Una roca madura texturalmente tiene poco contenido de matriz, ya que las partículas están bien seleccionadas y son redondeadas. El sortamiento es muy bueno, lo que significa que las partículas son de tamaño uniforme.",
+            "Las rocas maduras texturalmente presentan una baja cantidad de matriz y una excelente redondez de las partículas. El sortamiento es muy bueno, lo que refleja un transporte prolongado.",
+            "Cuando una roca es madura texturalmente, las partículas son redondeadas, bien seleccionadas y el contenido de matriz es bajo. El sortamiento es bueno, lo que indica una larga historia de transporte."
+        ],
+        "palabras_clave": ["madura", "texturalmente", "matriz", "sortamiento", "redondez"]},
     
     "Una roca sedimentaria siliciclástica al ser observada en muestra de mano presenta un mal calibrado, ¿qué se puede interpretar de esto?": 
-        {"respuesta": "El mal calibrado indica que las partículas no están bien ordenadas en tamaños, lo que puede sugerir que la roca es inmadura texturalmente o que ha sido depositada en condiciones dinámicas no estables.",
-         "palabras_clave": ["muestra de mano", "calibrado", "partículas", "inmadura"]},
+        {"respuestas": [
+            "El mal calibrado indica que las partículas no están bien ordenadas en tamaños, lo que puede sugerir que la roca es inmadura texturalmente o que ha sido depositada en condiciones dinámicas no estables.",
+            "Un mal calibrado de la muestra sugiere que la roca tiene una distribución de tamaños de partículas muy heterogénea, lo que indica un entorno de deposición más caótico o rápido.",
+            "Cuando las partículas no están bien calibradas, puede indicar que la roca tiene un origen en un ambiente de deposición más inestable, lo que podría reflejar una roca inmadura."
+        ],
+        "palabras_clave": ["muestra de mano", "calibrado", "partículas", "inmadura"]},
     
     "¿Cuál es la diferencia que existe entre matriz y cemento? ¿Cómo se pueden distinguir macroscópicamente?": 
-        {"respuesta": "La matriz es el material fino que ocupa los espacios entre las partículas, mientras que el cemento es una sustancia mineral que une las partículas. Macroscópicamente, el cemento tiene una textura más sólida y cristalina, mientras que la matriz suele ser más fina y menos compacta.",
-         "palabras_clave": ["matriz", "cemento", "macroscópicamente", "partículas"]},
+        {"respuestas": [
+            "La matriz es el material fino que ocupa los espacios entre las partículas, mientras que el cemento es una sustancia mineral que une las partículas. Macroscópicamente, el cemento tiene una textura más sólida y cristalina, mientras que la matriz suele ser más fina y menos compacta.",
+            "La matriz ocupa los vacíos entre los clastos, mientras que el cemento es lo que liga los clastos entre sí. Macroscópicamente, el cemento es más duro y cristalino en comparación con la matriz.",
+            "La matriz es un material que llena los vacíos entre los clastos, mientras que el cemento solidifica y une los clastos. El cemento es más evidente bajo el microscopio por su dureza y estructura, mientras que la matriz es más fina."
+        ],
+        "palabras_clave": ["matriz", "cemento", "macroscópicamente", "partículas"]},
     
     "¿Por qué es importante definir el porcentaje de matriz en la roca en términos de clasificación?": 
-        {"respuesta": "El porcentaje de matriz es crucial porque ayuda a clasificar las rocas en términos de madurez y porosidad. Una mayor cantidad de matriz generalmente indica una roca inmadura y de baja porosidad.",
-         "palabras_clave": ["porcentaje", "matriz", "clasificación", "madurez", "porosidad"]},
+        {"respuestas": [
+            "El porcentaje de matriz es crucial porque ayuda a clasificar las rocas en términos de madurez y porosidad. Una mayor cantidad de matriz generalmente indica una roca inmadura y de baja porosidad.",
+            "Definir el porcentaje de matriz permite clasificar mejor la roca, ya que una roca con alta matriz suele ser inmadura, mientras que una con poca matriz indica madurez.",
+            "El porcentaje de matriz es importante en la clasificación porque permite entender la historia de la roca. Una roca con bajo porcentaje de matriz tiende a ser más madura y tener mayor porosidad."
+        ],
+        "palabras_clave": ["porcentaje", "matriz", "clasificación", "madurez", "porosidad"]},
     
     "Cuando una roca es un conglomerado, ¿qué clasificaciones hay?": 
-        {"respuesta": "Un conglomerado se clasifica en función de la cantidad de matriz y el tamaño de los clastos. Dependiendo del porcentaje de matriz, se puede clasificar como un conglomerado rudítico o como un brecho.",
-         "palabras_clave": ["conglomerado", "clasificación", "matriz", "clastos"]},
+        {"respuestas": [
+            "Un conglomerado se clasifica en función de la cantidad de matriz y el tamaño de los clastos. Dependiendo del porcentaje de matriz, se puede clasificar como un conglomerado rudítico o como un brecho.",
+            "Los conglomerados se pueden clasificar según el tamaño de los clastos y el contenido de matriz. En función de estos factores, pueden ser conglomerados rudíticos o brechos.",
+            "Dependiendo del contenido de matriz y el tamaño de los clastos, los conglomerados se pueden clasificar en conglomerados de grano fino o grueso, e incluso en brechos si los clastos son muy grandes."
+        ],
+        "palabras_clave": ["conglomerado", "clasificación", "matriz", "clastos"]},
     
     "¿En qué consiste la madurez composicional de una roca?": 
-        {"respuesta": "La madurez composicional hace referencia al grado de alteración de los minerales originales en una roca. En rocas maduras, los minerales más susceptibles a la alteración han sido transformados o removidos, dejando una composición más estable.",
-         "palabras_clave": ["madurez", "composicional", "alteración", "minerales"]},
+        {"respuestas": [
+            "La madurez composicional hace referencia al grado de alteración de los minerales originales en una roca. En rocas maduras, los minerales más susceptibles a la alteración han sido transformados o removidos, dejando una composición más estable.",
+            "La madurez composicional describe el grado en que los minerales reactivos han sido eliminados de la roca, dejando una composición más estable y resistente.",
+            "Una roca madura composicionalmente tiene pocos minerales alterados y una mayor estabilidad en su composición. Los minerales más reactivos han sido transformados o eliminados."
+        ],
+        "palabras_clave": ["madurez", "composicional", "alteración", "minerales"]},
     
     "¿Qué diferencia existe entre porosidad y permeabilidad?": 
-        {"respuesta": "La porosidad es la cantidad de espacio vacío dentro de la roca, mientras que la permeabilidad es la capacidad de la roca para permitir el paso de fluidos. Una roca puede tener alta porosidad pero baja permeabilidad si los poros no están conectados.",
-         "palabras_clave": ["porosidad", "permeabilidad", "espacio vacío", "fluidos"]},
+        {"respuestas": [
+            "La porosidad es la cantidad de espacio vacío dentro de la roca, mientras que la permeabilidad es la capacidad de la roca para permitir el paso de fluidos. Una roca puede tener alta porosidad pero baja permeabilidad si los poros no están conectados.",
+            "La porosidad se refiere al volumen de espacio vacío dentro de la roca, mientras que la permeabilidad es la facilidad con la que los fluidos pueden fluir a través de esos espacios.",
+            "La porosidad mide los vacíos dentro de la roca, mientras que la permeabilidad describe cómo los fluidos pueden moverse a través de esos vacíos. Una roca puede tener alta porosidad pero baja permeabilidad si los poros no están interconectados."
+        ],
+        "palabras_clave": ["porosidad", "permeabilidad", "espacio vacío", "fluidos"]},
     
     "¿Una roca puede presentar tanto porosidades de tipo primarias y secundarias? Explique brevemente.": 
-        {"respuesta": "Sí, una roca puede presentar porosidad primaria (formada durante la sedimentación) y porosidad secundaria (formada por procesos posteriores como fracturamiento o meteorización). Ambas porosidades pueden coexistir y afectar las propiedades de la roca.",
-         "palabras_clave": ["porosidad", "primaria", "secundaria", "fracturamiento", "meteorización"]}
+        {"respuestas": [
+            "Sí, una roca puede presentar porosidad primaria (formada durante la sedimentación) y porosidad secundaria (formada por procesos posteriores como fracturamiento o meteorización). Ambas porosidades pueden coexistir y afectar las propiedades de la roca.",
+            "Es posible que una roca tenga porosidad primaria, que se forma durante la deposición, y porosidad secundaria, que se desarrolla por fracturamientos o alteraciones posteriores. Ambas porosidades influyen en las características de la roca.",
+            "Las rocas pueden presentar tanto porosidad primaria, que es la original de la sedimentación, como porosidad secundaria, que surge debido a procesos posteriores como la fracturación. Ambas son importantes para la permeabilidad y porosidad de la roca."
+        ],
+        "palabras_clave": ["porosidad", "primaria", "secundaria", "fracturamiento", "meteorización"]}
 }
 
-# Función para obtener la respuesta más adecuada
+# Función para obtener una respuesta aleatoria
 def obtener_respuesta(pregunta_usuario):
     respuesta = "Lo siento, no pude encontrar una respuesta adecuada."
     
@@ -212,9 +249,10 @@ def obtener_respuesta(pregunta_usuario):
         # Contar cuántas palabras clave coinciden
         coincidencias = sum(1 for palabra in palabras_usuario if palabra in palabras_clave)
         
-        # Si encontramos coincidencias, devolver la respuesta asociada
+        # Si encontramos coincidencias, devolver una respuesta aleatoria
         if coincidencias >= 2:  # Este umbral se puede ajustar
-            respuesta = info["respuesta"]
+            # Seleccionar una respuesta aleatoria de la lista
+            respuesta = info["respuestas"][hash(pregunta_usuario) % len(info["respuestas"])]
             break
     
     return respuesta
@@ -228,7 +266,7 @@ pregunta_seleccionada = st.selectbox("Elige una pregunta:", list(preguntas_respu
 
 if pregunta_seleccionada:
     st.write("**Respuesta:**")
-    st.write(preguntas_respuestas[pregunta_seleccionada]["respuesta"])
+    st.write(preguntas_respuestas[pregunta_seleccionada]["respuestas"][hash(pregunta_seleccionada) % len(preguntas_respuestas[pregunta_seleccionada]["respuestas"])])
 
 # Opción 2: Búsqueda de pregunta por similitud
 st.subheader("Escribe tu propia pregunta para obtener una respuesta similar")
@@ -239,6 +277,7 @@ if pregunta_usuario:
     respuesta_similar = obtener_respuesta(pregunta_usuario)
     st.write("**Respuesta similar:**")
     st.write(respuesta_similar)
+
 
 
 
