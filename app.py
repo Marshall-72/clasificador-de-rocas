@@ -139,7 +139,7 @@ if muestras_filtradas:
 
     ax4.bar(x, armazon, label="Armazón")
     ax4.bar(x, matriz, bottom=armazon, label="Matriz")
-    bottom_cem = [a + b for a, b in zip(armazon, matriz)]
+         bottom_cem = [a + b for a, b in zip(armazon, matriz)]
     ax4.bar(x, cemento, bottom=bottom_cem, label="Cemento")
     bottom_por = [a + b + c for a, b, c in zip(armazon, matriz, cemento)]
     ax4.bar(x, porosidad, bottom=bottom_por, label="Porosidad")
@@ -149,8 +149,9 @@ if muestras_filtradas:
     ax4.set_ylabel("Porcentaje (%)")
     ax4.set_title("Composición Interna de las Muestras")
     ax4.legend()
-    ax4.text(0.5, -0.2, 'Fuente: Elaboración propia', transform=ax4.transAxes, ha='center', fontsize=8)
+    ax4.text(0.5, -0.2, 'Fuente: Cutipa, C. Quenaya, F. Jaramillo, A. Amaro, M.', transform=ax4.transAxes, ha='center', fontsize=8)
     st.pyplot(fig4)
+    
 # Tabla resumen
     st.write("### Resumen de Composición Mineral")
     for m in muestras_filtradas:
