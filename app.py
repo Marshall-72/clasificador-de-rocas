@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 
 # Datos simulados de 8 muestras sedimentarias
 muestras = [
-    {
+     {
         "nombre": "Arenisca Cuarzosa",
         "tipo_particula": {"grava": 5, "arena": 90, "lodo": 5},
         "componentes": {"armazon": 80, "matriz": 10, "cemento": 5, "porosidad": 5},
@@ -139,7 +139,7 @@ if muestras_filtradas:
 
     ax4.bar(x, armazon, label="Armazón")
     ax4.bar(x, matriz, bottom=armazon, label="Matriz")
-         bottom_cem = [a + b for a, b in zip(armazon, matriz)]
+    bottom_cem = [a + b for a, b in zip(armazon, matriz)]
     ax4.bar(x, cemento, bottom=bottom_cem, label="Cemento")
     bottom_por = [a + b + c for a, b, c in zip(armazon, matriz, cemento)]
     ax4.bar(x, porosidad, bottom=bottom_por, label="Porosidad")
@@ -152,11 +152,50 @@ if muestras_filtradas:
     ax4.text(0.5, -0.2, 'Fuente: Cutipa, C. Quenaya, F. Jaramillo, A. Amaro, M.', transform=ax4.transAxes, ha='center', fontsize=8)
     st.pyplot(fig4)
     
-# Tabla resumen
+    # Tabla resumen
     st.write("### Resumen de Composición Mineral")
     for m in muestras_filtradas:
         st.write(f"**{m['nombre']}**")
         st.write(m["minerales"])
+
+# Sección de preguntas frecuentes (FAQ) - Interpretativas
+
+st.write("### Preguntas Interpretativas")
+
+faq_interpretativas = [
+    ("Defina con sus palabras qué relación existe entre el tipo de contacto de las partículas y la matriz.", 
+     "El tipo de contacto entre las partículas puede influir en la cantidad y distribución de la matriz, ya que los contactos más cercanos pueden implicar una mayor cementación o mayor desarrollo de la matriz entre los granos."),
+    
+    ("Si una roca sedimentaria siliciclástica es madura texturalmente, ¿qué se puede decir del contenido de matriz, el sortamiento y la redondez?", 
+     "Una roca madura texturalmente generalmente tiene baja matriz, un buen sortamiento de partículas y granos bien redondeados debido a un largo proceso de transporte."),
+    
+    ("Una roca sedimentaria siliciclástica al ser observada en muestra de mano presenta un mal calibrado, ¿qué se puede interpretar de esto?", 
+     "Un mal calibrado puede indicar un mal sortamiento de partículas, lo que sugiere un transporte más corto o un ambiente de sedimentación turbulento."),
+    
+    ("¿Cuál es la diferencia que existe entre matriz y cemento? ¿Cómo se pueden distinguir macroscópicamente?", 
+     "La matriz es material fino que llena los espacios entre los granos, mientras que el cemento es una sustancia que une los granos. Macroscópicamente, el cemento suele ser más rígido y actúa como aglutinante."),
+    
+    ("¿Por qué es importante definir el porcentaje de matriz en la roca en términos de clasificación?", 
+     "El porcentaje de matriz es crucial para clasificar las rocas sedimentarias porque influye en su porosidad, densidad y otras propiedades que definen su comportamiento y uso."),
+    
+    ("Cuando una roca es un conglomerado, ¿qué clasificaciones hay?", 
+     "Un conglomerado se clasifica según el tamaño de sus partículas, que pueden ser gruesas, medianas o finas, y por la composición mineralógica de los fragmentos."),
+    
+    ("¿En qué consiste la madurez composicional de una roca?", 
+     "La madurez composicional hace referencia al grado de transformación de los minerales en una roca, reflejando el tiempo y las condiciones de transporte y cementación."),
+    
+    ("¿Qué diferencia existe entre porosidad y permeabilidad?", 
+     "La porosidad es la cantidad de espacio vacío en una roca, mientras que la permeabilidad es la capacidad de una roca para permitir el paso de fluidos."),
+    
+    ("¿Una roca puede presentar tanto porosidades de tipo primarias y secundarias? Explique brevemente.", 
+     "Sí, una roca puede presentar porosidades primarias, que se originan durante la formación de la roca, y porosidades secundarias, que se desarrollan posteriormente por procesos como fracturación o disolución.")
+]
+
+# Mostrar preguntas y respuestas
+for pregunta, respuesta in faq_interpretativas:
+    with st.expander(pregunta):
+        st.write(respuesta)
+
 
 
 
