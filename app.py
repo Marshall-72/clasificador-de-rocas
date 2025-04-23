@@ -269,7 +269,7 @@ if pregunta_seleccionada:
     st.write(preguntas_respuestas[pregunta_seleccionada]["respuestas"][hash(pregunta_seleccionada) % len(preguntas_respuestas[pregunta_seleccionada]["respuestas"])])
 
 # Opción 2: Búsqueda de pregunta por similitud
-st.subheader("Escribe tu propia pregunta para obtener una respuesta similar")
+st.subheader("Escribe tu pregunta")
 
 pregunta_usuario = st.text_input("Escribe tu pregunta aquí:")
 
